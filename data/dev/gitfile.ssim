@@ -656,6 +656,7 @@ dev.gitfile  gitfile:data/gclidb/mrjob.ssim
 dev.gitfile  gitfile:data/gclidb/mrnote.ssim
 dev.gitfile  gitfile:data/gclidb/project.ssim
 dev.gitfile  gitfile:data/gclidb/user.ssim
+dev.gitfile  gitfile:docs
 dev.gitfile  gitfile:extern/.empty
 dev.gitfile  gitfile:include/abt.h
 dev.gitfile  gitfile:include/abt_md.h
@@ -1034,6 +1035,7 @@ dev.gitfile  gitfile:test/orgfile/PSX_20200101.txt
 dev.gitfile  gitfile:test/orgfile/a.txt
 dev.gitfile  gitfile:test/orgfile/b.txt
 dev.gitfile  gitfile:test/orgfile/c.txt
+dev.gitfile  gitfile:txt/.nojekyll
 dev.gitfile  gitfile:txt/about.md
 dev.gitfile  gitfile:txt/abt-troubleshoot.md
 dev.gitfile  gitfile:txt/abt.md
@@ -1070,6 +1072,7 @@ dev.gitfile  gitfile:txt/atf_unit.md
 dev.gitfile  gitfile:txt/bash2html.md
 dev.gitfile  gitfile:txt/coding-style.md
 dev.gitfile  gitfile:txt/directory-structure.md
+dev.gitfile  gitfile:txt/docs
 dev.gitfile  gitfile:txt/fm.md
 dev.gitfile  gitfile:txt/gcache.md
 dev.gitfile  gitfile:txt/gcli.md
