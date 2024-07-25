@@ -495,6 +495,14 @@ Other ctypes in this namespace which don't have own readme files
 |---|---|---|---|---|
 |bash|[command.bash](/txt/protocol/command/README.md#command-bash)|[Exec](/txt/exe/amc/reftypes.md#exec)|"bash"|Must be bash to support $'' for string quoting|
 
+#### command.bzg - Command line for [bzg](/txt/exe/bzg/README.md)
+<a href="#command-bzg"></a>
+
+|Field|[Type](/txt/ssimdb/dmmeta/ctype.md)|[Reftype](/txt/ssimdb/dmmeta/reftype.md)|Default|Comment|
+|---|---|---|---|---|
+|in|[algo.cstring](/txt/protocol/algo/cstring.md)|[Val](/txt/exe/amc/reftypes.md#val)|"data"|Input directory or filename, - for stdin|
+|write|bool|[Val](/txt/exe/amc/reftypes.md#val)|||
+
 #### command.gcache - Command line for [gcache](/txt/exe/gcache/README.md)
 <a href="#command-gcache"></a>
 

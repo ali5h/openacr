@@ -25,6 +25,7 @@ dev.target  target:atf_gcli
 dev.target  target:atf_nrun
 dev.target  target:atf_unit
 dev.target  target:bash2html
+dev.target  target:bzg
 dev.target  target:gcache
 dev.target  target:gcli
 dev.target  target:lib_amcdb

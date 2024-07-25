@@ -145,6 +145,7 @@ dmmeta.thash  field:atf_gcli.FDb.ind_gtblacttst  hashfld:gclidb.Gtblacttst.gtbla
 dmmeta.thash  field:atf_gcli.FDb.ind_gtblacttstout  hashfld:gclidb.Gtblacttstout.gtblacttstout  unique:Y  comment:""
 dmmeta.thash  field:atf_nrun.FDb.ind_running  hashfld:atf_nrun.FEntry.pid  unique:Y  comment:""
 dmmeta.thash  field:atf_unit.FDb.ind_unittest  hashfld:atfdb.Unittest.unittest  unique:Y  comment:""
+dmmeta.thash  field:bzg.FDb.ind_ns  hashfld:dmmeta.Ns.ns  unique:Y  comment:""
 dmmeta.thash  field:gcli.FDb.ind_gact  hashfld:gclidb.Gact.gact  unique:Y  comment:""
 dmmeta.thash  field:gcli.FDb.ind_gclicmd  hashfld:gclidb.Gclicmd.gclicmd  unique:Y  comment:""
 dmmeta.thash  field:gcli.FDb.ind_gclicmdarg  hashfld:gcli.FGclicmdarg.gclicmdarg  unique:Y  comment:""

@@ -724,6 +724,12 @@ dmmeta.ctypelen  ctype:atfdb.Tfilt  len:224  alignment:8  padbytes:4  plaindata:
 dmmeta.ctypelen  ctype:atfdb.Tmsg  len:72  alignment:8  padbytes:3  plaindata:N
 dmmeta.ctypelen  ctype:atfdb.Unittest  len:204  alignment:1  padbytes:0  plaindata:Y
 dmmeta.ctypelen  ctype:bash2html.FDb  len:32  alignment:8  padbytes:7  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FDb  len:1360  alignment:8  padbytes:19  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FNs  len:360  alignment:8  padbytes:18  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FTargdep  len:224  alignment:8  padbytes:4  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FTargsrc  len:272  alignment:8  padbytes:2  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FTargsyslib  len:232  alignment:8  padbytes:4  plaindata:N
+dmmeta.ctypelen  ctype:bzg.FToolOpt  len:440  alignment:8  padbytes:9  plaindata:N
 dmmeta.ctypelen  ctype:command.abt  len:608  alignment:8  padbytes:30  plaindata:N
 dmmeta.ctypelen  ctype:command.abt_md  len:288  alignment:8  padbytes:0  plaindata:N
 dmmeta.ctypelen  ctype:command.acr  len:192  alignment:8  padbytes:21  plaindata:N
@@ -751,6 +757,7 @@ dmmeta.ctypelen  ctype:command.atf_unit  len:152  alignment:8  padbytes:15  plai
 dmmeta.ctypelen  ctype:command.bash  len:16  alignment:8  padbytes:0  plaindata:N
 dmmeta.ctypelen  ctype:command.bash2html  len:24  alignment:8  padbytes:7  plaindata:N
 dmmeta.ctypelen  ctype:command.bash_proc  len:96  alignment:8  padbytes:4  plaindata:N
+dmmeta.ctypelen  ctype:command.bzg  len:24  alignment:8  padbytes:7  plaindata:N
 dmmeta.ctypelen  ctype:command.gcache  len:72  alignment:8  padbytes:7  plaindata:N
 dmmeta.ctypelen  ctype:command.gcli  len:352  alignment:8  padbytes:24  plaindata:N
 dmmeta.ctypelen  ctype:command.mdbg  len:160  alignment:8  padbytes:17  plaindata:N

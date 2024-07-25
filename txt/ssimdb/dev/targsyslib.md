@@ -25,6 +25,7 @@ italicised fields: *target, syslib, uname* are [**fldfunc**](/txt/ssim.md#fldfun
 <!-- dev.mdmark  mdmark:MDSECTION  state:BEG_AUTO  param:ImdbUses -->
 
 * [abt](/txt/exe/abt/internals.md) as [abt.FTargsyslib](/txt/exe/abt/internals.md#abt-ftargsyslib)
+* [bzg](/txt/exe/bzg/internals.md) as [bzg.FTargsyslib](/txt/exe/bzg/internals.md#bzg-ftargsyslib)
 
 <!-- dev.mdmark  mdmark:MDSECTION  state:END_AUTO  param:ImdbUses -->
 

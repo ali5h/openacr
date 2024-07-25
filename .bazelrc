@@ -1,0 +1,3 @@
+build --incompatible_strict_action_env
+build --sandbox_add_mount_pair=temp
+test --spawn_strategy=local

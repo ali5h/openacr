@@ -111,6 +111,7 @@ const char *dmmeta_Ns_ns_atf_nrun       = "atf_nrun";
 const char *dmmeta_Ns_ns_atf_unit       = "atf_unit";
 const char *dmmeta_Ns_ns_atfdb          = "atfdb";
 const char *dmmeta_Ns_ns_bash2html      = "bash2html";
+const char *dmmeta_Ns_ns_bzg            = "bzg";
 const char *dmmeta_Ns_ns_command        = "command";
 const char *dmmeta_Ns_ns_dev            = "dev";
 const char *dmmeta_Ns_ns_dmmeta         = "dmmeta";

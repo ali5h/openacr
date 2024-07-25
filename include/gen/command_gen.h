@@ -463,6 +463,8 @@ namespace command { struct bash; }
 namespace command { struct bash2html; }
 namespace command { struct bash2html_proc; }
 namespace command { struct bash_proc; }
+namespace command { struct bzg; }
+namespace command { struct bzg_proc; }
 namespace command { struct gcache; }
 namespace command { struct gcache_proc; }
 namespace command { struct gcli; }
@@ -3937,6 +3939,90 @@ void                 bash_ToArgv(command::bash_proc& parent, algo::StringAry& ar
 inline void          bash_proc_Init(command::bash_proc& parent);
 // func:command.bash_proc..Uninit
 void                 bash_proc_Uninit(command::bash_proc& parent) __attribute__((nothrow));
+
+// --- command.bzg
+// access: command.bzg_proc.bzg (Exec)
+struct bzg { // command.bzg
+    algo::cstring   in;      //   "data"  Input directory or filename, - for stdin
+    bool            write;   //   false
+    // func:command.bzg..Ctor
+    inline               bzg() __attribute__((nothrow));
+};
+
+// func:command.bzg..ReadFieldMaybe
+bool                 bzg_ReadFieldMaybe(command::bzg& parent, algo::strptr field, algo::strptr strval) __attribute__((nothrow));
+// Read fields of command::bzg from attributes of ascii tuple TUPLE
+// func:command.bzg..ReadTupleMaybe
+bool                 bzg_ReadTupleMaybe(command::bzg &parent, algo::Tuple &tuple) __attribute__((nothrow));
+// Set all fields to initial values.
+// func:command.bzg..Init
+inline void          bzg_Init(command::bzg& parent);
+// Convenience function that returns a full command line
+// Assume command is in a directory called bin
+// func:command.bzg..ToCmdline
+tempstr              bzg_ToCmdline(command::bzg& row) __attribute__((nothrow));
+// print string representation of ROW to string STR
+// cfmt:command.bzg.Argv  printfmt:Tuple
+// func:command.bzg..PrintArgv
+void                 bzg_PrintArgv(command::bzg& row, algo::cstring& str) __attribute__((nothrow));
+// Used with command lines
+// Return # of command-line arguments that must follow this argument
+// If FIELD is invalid, return -1
+// func:command.bzg..NArgs
+i32                  bzg_NArgs(command::FieldId field, algo::strptr& out_dflt, bool* out_anon) __attribute__((nothrow));
+
+// --- command.bzg_proc
+struct bzg_proc { // command.bzg_proc: Subprocess: 
+    algo::cstring   path;      //   "bin/bzg"  path for executable
+    command::bzg    cmd;       // command line for child process
+    algo::cstring   fstdin;    // redirect for stdin
+    algo::cstring   fstdout;   // redirect for stdout
+    algo::cstring   fstderr;   // redirect for stderr
+    pid_t           pid;       //   0  pid of running child process
+    i32             timeout;   //   0  optional timeout for child process
+    i32             status;    //   0  last exit status of child process
+    // func:command.bzg_proc..Ctor
+    inline               bzg_proc() __attribute__((nothrow));
+    // func:command.bzg_proc..Dtor
+    inline               ~bzg_proc() __attribute__((nothrow));
+};
+
+// Start subprocess
+// If subprocess already running, do nothing. Otherwise, start it
+// func:command.bzg_proc.bzg.Start
+int                  bzg_Start(command::bzg_proc& parent) __attribute__((nothrow));
+// Start subprocess & Read output
+// func:command.bzg_proc.bzg.StartRead
+algo::Fildes         bzg_StartRead(command::bzg_proc& parent, algo_lib::FFildes &read) __attribute__((nothrow));
+// Kill subprocess and wait
+// func:command.bzg_proc.bzg.Kill
+void                 bzg_Kill(command::bzg_proc& parent);
+// Wait for subprocess to return
+// func:command.bzg_proc.bzg.Wait
+void                 bzg_Wait(command::bzg_proc& parent) __attribute__((nothrow));
+// Start + Wait
+// Execute subprocess and return exit code
+// func:command.bzg_proc.bzg.Exec
+int                  bzg_Exec(command::bzg_proc& parent) __attribute__((nothrow));
+// Start + Wait, throw exception on error
+// Execute subprocess; throw human-readable exception on error
+// func:command.bzg_proc.bzg.ExecX
+void                 bzg_ExecX(command::bzg_proc& parent);
+// Call execv()
+// Call execv with specified parameters
+// func:command.bzg_proc.bzg.Execv
+int                  bzg_Execv(command::bzg_proc& parent) __attribute__((nothrow));
+// func:command.bzg_proc.bzg.ToCmdline
+algo::tempstr        bzg_ToCmdline(command::bzg_proc& parent) __attribute__((nothrow));
+// Form array from the command line
+// func:command.bzg_proc.bzg.ToArgv
+void                 bzg_ToArgv(command::bzg_proc& parent, algo::StringAry& args) __attribute__((nothrow));
+
+// Set all fields to initial values.
+// func:command.bzg_proc..Init
+inline void          bzg_proc_Init(command::bzg_proc& parent);
+// func:command.bzg_proc..Uninit
+void                 bzg_proc_Uninit(command::bzg_proc& parent) __attribute__((nothrow));
 
 // --- command.gcache
 // access: command.gcache_proc.gcache (Exec)

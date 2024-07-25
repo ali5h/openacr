@@ -1445,6 +1445,37 @@ inline  command::bash_proc::~bash_proc() {
     command::bash_proc_Uninit(*this);
 }
 
+// --- command.bzg..Init
+// Set all fields to initial values.
+inline void command::bzg_Init(command::bzg& parent) {
+    parent.in = algo::strptr("data");
+    parent.write = bool(false);
+}
+
+// --- command.bzg..Ctor
+inline  command::bzg::bzg() {
+    command::bzg_Init(*this);
+}
+
+// --- command.bzg_proc..Init
+// Set all fields to initial values.
+inline void command::bzg_proc_Init(command::bzg_proc& parent) {
+    parent.path = algo::strptr("bin/bzg");
+    parent.pid = pid_t(0);
+    parent.timeout = i32(0);
+    parent.status = i32(0);
+}
+
+// --- command.bzg_proc..Ctor
+inline  command::bzg_proc::bzg_proc() {
+    command::bzg_proc_Init(*this);
+}
+
+// --- command.bzg_proc..Dtor
+inline  command::bzg_proc::~bzg_proc() {
+    command::bzg_proc_Uninit(*this);
+}
+
 // --- command.gcache.cmd.EmptyQ
 // Return true if index is empty
 inline bool command::cmd_EmptyQ(command::gcache& parent) {

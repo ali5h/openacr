@@ -318,6 +318,7 @@ extern const char *  dmmeta_Ns_ns_atf_nrun;       // atf_nrun        fconst:dmme
 extern const char *  dmmeta_Ns_ns_atf_unit;       // atf_unit        fconst:dmmeta.Ns.ns/atf_unit
 extern const char *  dmmeta_Ns_ns_atfdb;          // atfdb           fconst:dmmeta.Ns.ns/atfdb
 extern const char *  dmmeta_Ns_ns_bash2html;      // bash2html       fconst:dmmeta.Ns.ns/bash2html
+extern const char *  dmmeta_Ns_ns_bzg;            // bzg             fconst:dmmeta.Ns.ns/bzg
 extern const char *  dmmeta_Ns_ns_command;        // command         fconst:dmmeta.Ns.ns/command
 extern const char *  dmmeta_Ns_ns_dev;            // dev             fconst:dmmeta.Ns.ns/dev
 extern const char *  dmmeta_Ns_ns_dmmeta;         // dmmeta          fconst:dmmeta.Ns.ns/dmmeta

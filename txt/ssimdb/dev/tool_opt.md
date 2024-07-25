@@ -30,6 +30,7 @@ italicised fields: *uname, compiler, cfg, arch, target, opt_type, opt, sortfld* 
 <!-- dev.mdmark  mdmark:MDSECTION  state:BEG_AUTO  param:ImdbUses -->
 
 * [abt](/txt/exe/abt/internals.md) as [abt.FToolOpt](/txt/exe/abt/internals.md#abt-ftoolopt)
+* [bzg](/txt/exe/bzg/internals.md) as [bzg.FToolOpt](/txt/exe/bzg/internals.md#bzg-ftoolopt)
 
 <!-- dev.mdmark  mdmark:MDSECTION  state:END_AUTO  param:ImdbUses -->
 

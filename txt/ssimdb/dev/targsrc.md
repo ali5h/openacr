@@ -38,6 +38,7 @@ italicised fields: *target, src, ext* are [**fldfunc**](/txt/ssim.md#fldfunc) fi
 * [acr_ed](/txt/exe/acr_ed/internals.md) as [acr_ed.FTargsrc](/txt/exe/acr_ed/internals.md#acr_ed-ftargsrc)
 * [atf_ci](/txt/exe/atf_ci/internals.md) as [atf_ci.FTargsrc](/txt/exe/atf_ci/internals.md#atf_ci-ftargsrc)
 * [atf_cov](/txt/exe/atf_cov/internals.md) as [atf_cov.FTargsrc](/txt/exe/atf_cov/internals.md#atf_cov-ftargsrc)
+* [bzg](/txt/exe/bzg/internals.md) as [bzg.FTargsrc](/txt/exe/bzg/internals.md#bzg-ftargsrc)
 * [src_func](/txt/exe/src_func/internals.md) as [src_func.FTargsrc](/txt/exe/src_func/internals.md#src_func-ftargsrc)
 * [src_hdr](/txt/exe/src_hdr/internals.md) as [src_hdr.FTargsrc](/txt/exe/src_hdr/internals.md#src_hdr-ftargsrc)
 * [src_lim](/txt/exe/src_lim/internals.md) as [src_lim.FTargsrc](/txt/exe/src_lim/internals.md#src_lim-ftargsrc)

@@ -574,6 +574,11 @@ dmmeta.xref  field:atf_nrun.FDb.ind_running  inscond:false  via:""
 dmmeta.xref  field:atf_nrun.FDb.zd_todo  inscond:false  via:""
 dmmeta.xref  field:atf_unit.FDb.tr_number  inscond:true  via:""
 dmmeta.xref  field:atf_unit.FDb.ind_unittest  inscond:true  via:""
+dmmeta.xref  field:bzg.FDb.ind_ns  inscond:true  via:""
+dmmeta.xref  field:bzg.FNs.zd_targsrc  inscond:true  via:bzg.FDb.ind_ns/dev.Targsrc.target
+dmmeta.xref  field:bzg.FNs.zd_targdep  inscond:true  via:bzg.FDb.ind_ns/dev.Targdep.target
+dmmeta.xref  field:bzg.FNs.zd_targsyslib  inscond:false  via:bzg.FDb.ind_ns/dev.Targsyslib.target
+dmmeta.xref  field:bzg.FTargsyslib.p_ns  inscond:true  via:bzg.FDb.ind_ns/dev.Targsyslib.target
 dmmeta.xref  field:gcli.FDb.ind_gtype  inscond:true  via:""
 dmmeta.xref  field:gcli.FDb.ind_grepossh  inscond:true  via:""
 dmmeta.xref  field:gcli.FDb.ind_grepogitport  inscond:true  via:""

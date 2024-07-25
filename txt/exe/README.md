@@ -70,6 +70,8 @@
 &#128196; [atf_unit - Internals](/txt/exe/atf_unit/internals.md)<br/>
 &#128196; [bash2html - Convert bash output and colours to html](/txt/exe/bash2html/README.md)<br/>
 &#128196; [bash2html - Internals](/txt/exe/bash2html/internals.md)<br/>
+&#128196; [bzg -](/txt/exe/bzg/README.md)<br/>
+&#128196; [bzg - Internals](/txt/exe/bzg/internals.md)<br/>
 &#128196; [gcache - Compiler cache](/txt/exe/gcache/README.md)<br/>
 &#128196; [gcache - Internals](/txt/exe/gcache/internals.md)<br/>
 &#128196; [gcli - Gcli - gitlab/github command-line client](/txt/exe/gcli/README.md)<br/>

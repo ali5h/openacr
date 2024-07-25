@@ -27,6 +27,7 @@ italicised fields: *target, parent* are [**fldfunc**](/txt/ssim.md#fldfunc) fiel
 * [abt_md](/txt/exe/abt_md/internals.md) as [abt_md.FTargdep](/txt/exe/abt_md/internals.md#abt_md-ftargdep)
 * [acr_in](/txt/exe/acr_in/internals.md) as [acr_in.FTargdep](/txt/exe/acr_in/internals.md#acr_in-ftargdep)
 * [amc](/txt/exe/amc/internals.md) as [amc.FTargdep](/txt/exe/amc/internals.md#amc-ftargdep)
+* [bzg](/txt/exe/bzg/internals.md) as [bzg.FTargdep](/txt/exe/bzg/internals.md#bzg-ftargdep)
 
 <!-- dev.mdmark  mdmark:MDSECTION  state:END_AUTO  param:ImdbUses -->
 

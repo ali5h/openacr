@@ -31,6 +31,7 @@ dmmeta.ns  ns:atf_nrun  nstype:exe  license:GPL  comment:"Run N subprocesses in 
 dmmeta.ns  ns:atf_unit  nstype:exe  license:GPL  comment:"Unit tests (see unittest table)"
 dmmeta.ns  ns:atfdb  nstype:ssimdb  license:GPL  comment:"Support tables for testing"
 dmmeta.ns  ns:bash2html  nstype:exe  license:GPL  comment:"Convert bash output and colours to html"
+dmmeta.ns  ns:bzg  nstype:exe  license:GPL  comment:""
 dmmeta.ns  ns:command  nstype:protocol  license:GPL  comment:"Command line descriptions"
 dmmeta.ns  ns:dev  nstype:ssimdb  license:GPL  comment:"Tables supporting compilation of programs"
 dmmeta.ns  ns:dmmeta  nstype:ssimdb  license:GPL  comment:"Tables holding metadata (data model meta)"

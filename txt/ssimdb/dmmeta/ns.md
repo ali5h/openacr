@@ -85,6 +85,7 @@ These ssimfiles reference dmmeta.ns
 * [apm](/txt/exe/apm/internals.md) as [apm.FNs](/txt/exe/apm/internals.md#apm-fns)
 * [aqlite](/txt/exe/aqlite/internals.md) as [aqlite.FNs](/txt/exe/aqlite/internals.md#aqlite-fns)
 * [atf_ci](/txt/exe/atf_ci/internals.md) as [atf_ci.FNs](/txt/exe/atf_ci/internals.md#atf_ci-fns)
+* [bzg](/txt/exe/bzg/internals.md) as [bzg.FNs](/txt/exe/bzg/internals.md#bzg-fns)
 * [src_hdr](/txt/exe/src_hdr/internals.md) as [src_hdr.FNs](/txt/exe/src_hdr/internals.md#src_hdr-fns)
 * [ssim2mysql](/txt/exe/ssim2mysql/internals.md) as [ssim2mysql.FNs](/txt/exe/ssim2mysql/internals.md#ssim2mysql-fns)
 

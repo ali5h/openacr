@@ -15946,6 +15946,262 @@ void command::bash_proc_Uninit(command::bash_proc& parent) {
     bash_Kill(parent); // kill child, ensure forward progress
 }
 
+// --- command.bzg..ReadFieldMaybe
+bool command::bzg_ReadFieldMaybe(command::bzg& parent, algo::strptr field, algo::strptr strval) {
+    bool retval = true;
+    command::FieldId field_id;
+    (void)value_SetStrptrMaybe(field_id,field);
+    switch(field_id) {
+        case command_FieldId_in: {
+            retval = algo::cstring_ReadStrptrMaybe(parent.in, strval);
+            break;
+        }
+        case command_FieldId_write: {
+            retval = bool_ReadStrptrMaybe(parent.write, strval);
+            break;
+        }
+        default: break;
+    }
+    if (!retval) {
+        algo_lib::AppendErrtext("attr",field);
+    }
+    return retval;
+}
+
+// --- command.bzg..ReadTupleMaybe
+// Read fields of command::bzg from attributes of ascii tuple TUPLE
+bool command::bzg_ReadTupleMaybe(command::bzg &parent, algo::Tuple &tuple) {
+    bool retval = true;
+    ind_beg(algo::Tuple_attrs_curs,attr,tuple) {
+        retval = bzg_ReadFieldMaybe(parent, attr.name, attr.value);
+        if (!retval) {
+            break;
+        }
+    }ind_end;
+    return retval;
+}
+
+// --- command.bzg..ToCmdline
+// Convenience function that returns a full command line
+// Assume command is in a directory called bin
+tempstr command::bzg_ToCmdline(command::bzg& row) {
+    tempstr ret;
+    ret << "bin/bzg ";
+    bzg_PrintArgv(row, ret);
+    // inherit less intense verbose, debug options
+    for (int i = 1; i < algo_lib::_db.cmdline.verbose; i++) {
+        ret << " -verbose";
+    }
+    for (int i = 1; i < algo_lib::_db.cmdline.debug; i++) {
+        ret << " -debug";
+    }
+    return ret;
+}
+
+// --- command.bzg..PrintArgv
+// print string representation of ROW to string STR
+// cfmt:command.bzg.Argv  printfmt:Tuple
+void command::bzg_PrintArgv(command::bzg& row, algo::cstring& str) {
+    algo::tempstr temp;
+    (void)temp;
+    (void)str;
+    if (!(row.in == "data")) {
+        ch_RemoveAll(temp);
+        cstring_Print(row.in, temp);
+        str << " -in:";
+        strptr_PrintBash(temp,str);
+    }
+    if (!(row.write == false)) {
+        ch_RemoveAll(temp);
+        bool_Print(row.write, temp);
+        str << " -write:";
+        strptr_PrintBash(temp,str);
+    }
+}
+
+// --- command.bzg..NArgs
+// Used with command lines
+// Return # of command-line arguments that must follow this argument
+// If FIELD is invalid, return -1
+i32 command::bzg_NArgs(command::FieldId field, algo::strptr& out_dflt, bool* out_anon) {
+    i32 retval = 1;
+    switch (field) {
+        case command_FieldId_in: { // $comment
+            *out_anon = false;
+        } break;
+        case command_FieldId_write: { // $comment
+            *out_anon = false;
+            retval=0;
+            out_dflt="Y";
+        } break;
+        default:
+        retval=-1; // unrecognized
+    }
+    return retval;
+}
+
+// --- command.bzg_proc.bzg.Start
+// Start subprocess
+// If subprocess already running, do nothing. Otherwise, start it
+int command::bzg_Start(command::bzg_proc& parent) {
+    int retval = 0;
+    if (parent.pid == 0) {
+        verblog(bzg_ToCmdline(parent)); // maybe print command
+#ifdef WIN32
+        algo_lib::ResolveExecFname(parent.path);
+        tempstr cmdline(bzg_ToCmdline(parent));
+        parent.pid = dospawn(Zeroterm(parent.path),Zeroterm(cmdline),parent.timeout,parent.fstdin,parent.fstdout,parent.fstderr);
+#else
+        parent.pid = fork();
+        if (parent.pid == 0) { // child
+            algo_lib::DieWithParent();
+            if (parent.timeout > 0) {
+                alarm(parent.timeout);
+            }
+            if (retval==0) retval=algo_lib::ApplyRedirect(parent.fstdin , 0);
+            if (retval==0) retval=algo_lib::ApplyRedirect(parent.fstdout, 1);
+            if (retval==0) retval=algo_lib::ApplyRedirect(parent.fstderr, 2);
+            if (retval==0) retval= bzg_Execv(parent);
+            if (retval != 0) { // if start fails, print error
+                int err=errno;
+                prerr("command.bzg_execv"
+                <<Keyval("errno",err)
+                <<Keyval("errstr",strerror(err))
+                <<Keyval("comment","Execv failed"));
+            }
+            _exit(127); // if failed to start, exit anyway
+        } else if (parent.pid == -1) {
+            retval = errno; // failed to fork
+        }
+#endif
+    }
+    parent.status = parent.pid > 0 ? 0 : -1; // if didn't start, set error status
+    return retval;
+}
+
+// --- command.bzg_proc.bzg.StartRead
+// Start subprocess & Read output
+algo::Fildes command::bzg_StartRead(command::bzg_proc& parent, algo_lib::FFildes &read) {
+    int pipefd[2];
+    int rc=pipe(pipefd);
+    (void)rc;
+    read.fd.value = pipefd[0];
+    parent.fstdout  << ">&" << pipefd[1];
+    bzg_Start(parent);
+    (void)close(pipefd[1]);
+    return read.fd;
+}
+
+// --- command.bzg_proc.bzg.Kill
+// Kill subprocess and wait
+void command::bzg_Kill(command::bzg_proc& parent) {
+    if (parent.pid != 0) {
+        kill(parent.pid,9);
+        bzg_Wait(parent);
+    }
+}
+
+// --- command.bzg_proc.bzg.Wait
+// Wait for subprocess to return
+void command::bzg_Wait(command::bzg_proc& parent) {
+    if (parent.pid > 0) {
+        int wait_flags = 0;
+        int wait_status = 0;
+        int rc = -1;
+        do {
+            // really wait for subprocess to exit
+            rc = waitpid(parent.pid,&wait_status,wait_flags);
+        } while (rc==-1 && errno==EINTR);
+        if (rc == parent.pid) {
+            parent.status = wait_status;
+            parent.pid = 0;
+        }
+    }
+}
+
+// --- command.bzg_proc.bzg.Exec
+// Start + Wait
+// Execute subprocess and return exit code
+int command::bzg_Exec(command::bzg_proc& parent) {
+    bzg_Start(parent);
+    bzg_Wait(parent);
+    return parent.status;
+}
+
+// --- command.bzg_proc.bzg.ExecX
+// Start + Wait, throw exception on error
+// Execute subprocess; throw human-readable exception on error
+void command::bzg_ExecX(command::bzg_proc& parent) {
+    int rc = bzg_Exec(parent);
+    vrfy(rc==0, tempstr() << "algo_lib.exec" << Keyval("cmd",bzg_ToCmdline(parent))
+    << Keyval("comment",algo::DescribeWaitStatus(parent.status)));
+}
+
+// --- command.bzg_proc.bzg.Execv
+// Call execv()
+// Call execv with specified parameters
+int command::bzg_Execv(command::bzg_proc& parent) {
+    int ret = 0;
+    algo::StringAry args;
+    bzg_ToArgv(parent, args);
+    char **argv = (char**)alloca((ary_N(args)+1)*sizeof(*argv));
+    ind_beg(algo::StringAry_ary_curs,arg,args) {
+        argv[ind_curs(arg).index] = Zeroterm(arg);
+    }ind_end;
+    argv[ary_N(args)] = NULL;
+    // if parent.path is relative, search for it in PATH
+    algo_lib::ResolveExecFname(parent.path);
+    ret = execv(Zeroterm(parent.path),argv);
+    return ret;
+}
+
+// --- command.bzg_proc.bzg.ToCmdline
+algo::tempstr command::bzg_ToCmdline(command::bzg_proc& parent) {
+    algo::tempstr retval;
+    retval << parent.path << " ";
+    command::bzg_PrintArgv(parent.cmd,retval);
+    if (ch_N(parent.fstdin)) {
+        retval << " " << parent.fstdin;
+    }
+    if (ch_N(parent.fstdout)) {
+        retval << " " << parent.fstdout;
+    }
+    if (ch_N(parent.fstderr)) {
+        retval << " 2" << parent.fstderr;
+    }
+    return retval;
+}
+
+// --- command.bzg_proc.bzg.ToArgv
+// Form array from the command line
+void command::bzg_ToArgv(command::bzg_proc& parent, algo::StringAry& args) {
+    ary_RemoveAll(args);
+    ary_Alloc(args) << parent.path;
+
+    if (parent.cmd.in != "data") {
+        cstring *arg = &ary_Alloc(args);
+        *arg << "-in:";
+        cstring_Print(parent.cmd.in, *arg);
+    }
+
+    if (parent.cmd.write != false) {
+        cstring *arg = &ary_Alloc(args);
+        *arg << "-write:";
+        bool_Print(parent.cmd.write, *arg);
+    }
+    for (int i=1; i < algo_lib::_db.cmdline.verbose; ++i) {
+        ary_Alloc(args) << "-verbose";
+    }
+}
+
+// --- command.bzg_proc..Uninit
+void command::bzg_proc_Uninit(command::bzg_proc& parent) {
+    command::bzg_proc &row = parent; (void)row;
+
+    // command.bzg_proc.bzg.Uninit (Exec)  //
+    bzg_Kill(parent); // kill child, ensure forward progress
+}
+
 // --- command.gcache.cmd.Addary
 // Reserve space (this may move memory). Insert N element at the end.
 // Return aryptr to newly inserted block.

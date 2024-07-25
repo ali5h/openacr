@@ -24,6 +24,7 @@ dmmeta.fcmdline  field:atf_gcli.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cm
 dmmeta.fcmdline  field:atf_nrun.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
 dmmeta.fcmdline  field:atf_unit.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
 dmmeta.fcmdline  field:bash2html.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
+dmmeta.fcmdline  field:bzg.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
 dmmeta.fcmdline  field:gcache.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
 dmmeta.fcmdline  field:gcli.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""
 dmmeta.fcmdline  field:lib_exec.FDb.cmdline  read:Y  basecmdline:algo_lib.FDb.cmdline  comment:""

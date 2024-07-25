@@ -61,6 +61,7 @@ const char *dev_Cfg_cfg_release   = "release";
 
 // compile-time string constants for dev.Compiler.compiler
 const char *dev_Compiler_compiler_          = "";
+const char *dev_Compiler_compiler_bazel     = "bazel";
 const char *dev_Compiler_compiler_cl        = "cl";
 const char *dev_Compiler_compiler_clangPP   = "clang++";
 const char *dev_Compiler_compiler_gPP       = "g++";

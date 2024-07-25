@@ -50,6 +50,7 @@ extern const char *  dev_Cfg_cfg_debug;      // debug       fconst:dev.Cfg.cfg/d
 extern const char *  dev_Cfg_cfg_profile;    // profile     fconst:dev.Cfg.cfg/profile
 extern const char *  dev_Cfg_cfg_release;    // release     fconst:dev.Cfg.cfg/release
 extern const char *  dev_Compiler_compiler_;          //            fconst:dev.Compiler.compiler/
+extern const char *  dev_Compiler_compiler_bazel;     // bazel      fconst:dev.Compiler.compiler/bazel
 extern const char *  dev_Compiler_compiler_cl;        // cl         fconst:dev.Compiler.compiler/cl
 extern const char *  dev_Compiler_compiler_clangPP;   // clang++    fconst:dev.Compiler.compiler/clang++
 extern const char *  dev_Compiler_compiler_gPP;       // g++        fconst:dev.Compiler.compiler/g++

@@ -64,6 +64,8 @@ dev.readme  gitfile:txt/exe/atf_unit/README.md  inl:N  sandbox:N  filter:""  com
 dev.readme  gitfile:txt/exe/atf_unit/internals.md  inl:N  sandbox:N  filter:""  comment:""
 dev.readme  gitfile:txt/exe/bash2html/README.md  inl:N  sandbox:N  filter:""  comment:""
 dev.readme  gitfile:txt/exe/bash2html/internals.md  inl:N  sandbox:N  filter:""  comment:""
+dev.readme  gitfile:txt/exe/bzg/README.md  inl:N  sandbox:N  filter:""  comment:""
+dev.readme  gitfile:txt/exe/bzg/internals.md  inl:N  sandbox:N  filter:""  comment:""
 dev.readme  gitfile:txt/exe/coding-style.md  inl:N  sandbox:N  filter:""  comment:""
 dev.readme  gitfile:txt/exe/gcache/README.md  inl:N  sandbox:N  filter:""  comment:""
 dev.readme  gitfile:txt/exe/gcache/internals.md  inl:N  sandbox:N  filter:""  comment:""

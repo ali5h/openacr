@@ -153,6 +153,7 @@ Possible values are
 inline-command: acr compiler -report:N | ssimfilt -t
 COMPILER  RANLIB       AR       LINK      LIBEXT  EXEEXT  PCHEXT  OBJEXT  RC      COMMENT
                                                                                   all
+bazel
 cl                     LIB.EXE  LINK.EXE  .lib    .exe    .pch    .obj    RC.EXE
 clang++   llvm-ranlib  llvm-ar  clang++   .a              .gch    .o
 g++       ranlib       ar       g++       .a              .gch    .o

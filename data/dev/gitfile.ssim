@@ -1,11 +1,17 @@
+dev.gitfile  gitfile:.bazelignore
+dev.gitfile  gitfile:.bazelrc
 dev.gitfile  gitfile:.ffroot
 dev.gitfile  gitfile:.gitattributes
 dev.gitfile  gitfile:.github/workflows/main.yml
 dev.gitfile  gitfile:.gitignore
 dev.gitfile  gitfile:.gitlab-ci.yml
+dev.gitfile  gitfile:BUILD
 dev.gitfile  gitfile:LICENSE
+dev.gitfile  gitfile:MODULE.bazel
+dev.gitfile  gitfile:MODULE.bazel.lock
 dev.gitfile  gitfile:Makefile
 dev.gitfile  gitfile:README.md
+dev.gitfile  gitfile:WORKSPACE
 dev.gitfile  gitfile:bin/abt
 dev.gitfile  gitfile:bin/abt_md
 dev.gitfile  gitfile:bin/abt_md_filt
@@ -38,6 +44,7 @@ dev.gitfile  gitfile:bin/bootstrap/Darwin-clang++.release-x86_64
 dev.gitfile  gitfile:bin/bootstrap/FreeBSD-clang++.release-amd64
 dev.gitfile  gitfile:bin/bootstrap/Linux-g++.release-x86_64
 dev.gitfile  gitfile:bin/break-long-lines
+dev.gitfile  gitfile:bin/bzg
 dev.gitfile  gitfile:bin/ci-show-log
 dev.gitfile  gitfile:bin/cpp-indent
 dev.gitfile  gitfile:bin/delete-duplicate-lines
@@ -326,6 +333,7 @@ dev.gitfile  gitfile:cpp/atf_unit/string.cpp
 dev.gitfile  gitfile:cpp/atf_unit/time.cpp
 dev.gitfile  gitfile:cpp/atf_unit/tuple.cpp
 dev.gitfile  gitfile:cpp/bash2html.cpp
+dev.gitfile  gitfile:cpp/bzg/bzg.cpp
 dev.gitfile  gitfile:cpp/gcache/gcache.cpp
 dev.gitfile  gitfile:cpp/gcli/git.cpp
 dev.gitfile  gitfile:cpp/gcli/gtblact.cpp
@@ -372,6 +380,7 @@ dev.gitfile  gitfile:cpp/gen/atf_nrun_gen.cpp
 dev.gitfile  gitfile:cpp/gen/atf_unit_gen.cpp
 dev.gitfile  gitfile:cpp/gen/atfdb_gen.cpp
 dev.gitfile  gitfile:cpp/gen/bash2html_gen.cpp
+dev.gitfile  gitfile:cpp/gen/bzg_gen.cpp
 dev.gitfile  gitfile:cpp/gen/command_gen.cpp
 dev.gitfile  gitfile:cpp/gen/dev_gen.cpp
 dev.gitfile  gitfile:cpp/gen/dmmeta_gen.cpp
@@ -722,6 +731,7 @@ dev.gitfile  gitfile:include/atf_gcli.h
 dev.gitfile  gitfile:include/atf_nrun.h
 dev.gitfile  gitfile:include/atf_unit.h
 dev.gitfile  gitfile:include/bash2html.h
+dev.gitfile  gitfile:include/bzg.h
 dev.gitfile  gitfile:include/define.h
 dev.gitfile  gitfile:include/gcache.h
 dev.gitfile  gitfile:include/gcli.h
@@ -791,6 +801,8 @@ dev.gitfile  gitfile:include/gen/atfdb_gen.h
 dev.gitfile  gitfile:include/gen/atfdb_gen.inl.h
 dev.gitfile  gitfile:include/gen/bash2html_gen.h
 dev.gitfile  gitfile:include/gen/bash2html_gen.inl.h
+dev.gitfile  gitfile:include/gen/bzg_gen.h
+dev.gitfile  gitfile:include/gen/bzg_gen.inl.h
 dev.gitfile  gitfile:include/gen/command_gen.h
 dev.gitfile  gitfile:include/gen/command_gen.inl.h
 dev.gitfile  gitfile:include/gen/dev_gen.h
@@ -1180,6 +1192,8 @@ dev.gitfile  gitfile:txt/exe/atf_unit/README.md
 dev.gitfile  gitfile:txt/exe/atf_unit/internals.md
 dev.gitfile  gitfile:txt/exe/bash2html/README.md
 dev.gitfile  gitfile:txt/exe/bash2html/internals.md
+dev.gitfile  gitfile:txt/exe/bzg/README.md
+dev.gitfile  gitfile:txt/exe/bzg/internals.md
 dev.gitfile  gitfile:txt/exe/coding-style.md
 dev.gitfile  gitfile:txt/exe/gcache/README.md
 dev.gitfile  gitfile:txt/exe/gcache/internals.md
