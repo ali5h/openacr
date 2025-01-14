@@ -1,0 +1,82 @@
+os = Linux
+cxx = g++
+cfg = release
+arch = x86_64
+builddir = build/${os}-${cfg}-${arch}
+
+cflags = -Wno-invalid-offsetof -ffunction-sections -fdata-sections -Wsequence-point -Wno-multichar -Wall -Wshadow -pipe -Wextra -Winit-self -Wmissing-include-dirs -Wmissing-declarations -Winvalid-pch -iquote . -Wno-vla -fpch-preprocess -Wno-class-memaccess -Wpedantic -msse4.2 -D AOS_SSE42 -O3 -Werror -Wno-unused-local-typedefs -Wno-long-long -Wno-cast-function-type
+
+ldflags = -ldl -lm -pthread -Wl,--gc-sections -pthread
+
+rule cxx
+     description = Compiling $in
+     depfile = $out.d
+     deps = gcc
+     command = $cxx -MD -MF $out.d $cflags -c $in -o $out
+
+rule ar
+  description = Archiving $out
+  command = ar rcs $out $in
+
+rule link
+  description = Linking $out
+  command = $cxx $ldflags $in -o $out
+
+build $builddir/cpp/lib/algo/arg.o: cxx cpp/lib/algo/arg.cpp
+build $builddir/cpp/lib/algo/backtrace.o: cxx cpp/lib/algo/backtrace.cpp
+build $builddir/cpp/lib/algo/base64.o: cxx cpp/lib/algo/base64.cpp
+build $builddir/cpp/lib/algo/cpu_hz.o: cxx cpp/lib/algo/cpu_hz.cpp
+build $builddir/cpp/lib/algo/crc32.o: cxx cpp/lib/algo/crc32.cpp
+build $builddir/cpp/lib/algo/decimal.o: cxx cpp/lib/algo/decimal.cpp
+build $builddir/cpp/lib/algo/errtext.o: cxx cpp/lib/algo/errtext.cpp
+build $builddir/cpp/lib/algo/file.o: cxx cpp/lib/algo/file.cpp
+build $builddir/cpp/lib/algo/fmt.o: cxx cpp/lib/algo/fmt.cpp
+build $builddir/cpp/lib/algo/iohook.o: cxx cpp/lib/algo/iohook.cpp
+build $builddir/cpp/lib/algo/lib.o: cxx cpp/lib/algo/lib.cpp
+build $builddir/cpp/lib/algo/line.o: cxx cpp/lib/algo/line.cpp
+build $builddir/cpp/lib/algo/lockfile.o: cxx cpp/lib/algo/lockfile.cpp
+build $builddir/cpp/lib/algo/mmap.o: cxx cpp/lib/algo/mmap.cpp
+build $builddir/cpp/lib/algo/prlog.o: cxx cpp/lib/algo/prlog.cpp
+build $builddir/cpp/lib/algo/regx.o: cxx cpp/lib/algo/regx.cpp
+build $builddir/cpp/lib/algo/string.o: cxx cpp/lib/algo/string.cpp
+build $builddir/cpp/lib/algo/time.o: cxx cpp/lib/algo/time.cpp
+build $builddir/cpp/lib/algo/timehook.o: cxx cpp/lib/algo/timehook.cpp
+build $builddir/cpp/lib/algo/tstamp.o: cxx cpp/lib/algo/tstamp.cpp
+build $builddir/cpp/lib/algo/txttbl.o: cxx cpp/lib/algo/txttbl.cpp
+build $builddir/cpp/lib/algo/u128.o: cxx cpp/lib/algo/u128.cpp
+build $builddir/cpp/lib/algo/win32.o: cxx cpp/lib/algo/win32.cpp
+build $builddir/cpp/gen/algo_lib_gen.o: cxx cpp/gen/algo_lib_gen.cpp
+build $builddir/cpp/gen/algo_gen.o: cxx cpp/gen/algo_gen.cpp
+      cflags = $cflags -Wno-stringop-overflow
+build $builddir/cpp/gen/command_gen.o: cxx cpp/gen/command_gen.cpp
+build $builddir/cpp/gen/dev_gen.o: cxx cpp/gen/dev_gen.cpp
+build $builddir/cpp/gen/_gen.o: cxx cpp/gen/_gen.cpp
+build $builddir/cpp/gen/dmmeta_gen.o: cxx cpp/gen/dmmeta_gen.cpp
+build $builddir/cpp/gen/report_gen.o: cxx cpp/gen/report_gen.cpp
+
+build $builddir/cpp/algo_lib.a: ar $builddir/cpp/lib/algo/arg.o $builddir/cpp/lib/algo/backtrace.o $builddir/cpp/lib/algo/base64.o $builddir/cpp/lib/algo/cpu_hz.o $builddir/cpp/lib/algo/crc32.o $builddir/cpp/lib/algo/decimal.o $builddir/cpp/lib/algo/errtext.o $builddir/cpp/lib/algo/file.o $builddir/cpp/lib/algo/fmt.o $builddir/cpp/lib/algo/iohook.o $builddir/cpp/lib/algo/lib.o $builddir/cpp/lib/algo/line.o $builddir/cpp/lib/algo/lockfile.o $builddir/cpp/lib/algo/mmap.o $builddir/cpp/lib/algo/prlog.o $builddir/cpp/lib/algo/regx.o $builddir/cpp/lib/algo/string.o $builddir/cpp/lib/algo/time.o $builddir/cpp/lib/algo/timehook.o $builddir/cpp/lib/algo/tstamp.o $builddir/cpp/lib/algo/txttbl.o $builddir/cpp/lib/algo/u128.o $builddir/cpp/lib/algo/win32.o $builddir/cpp/gen/algo_lib_gen.o $builddir/cpp/gen/algo_gen.o $builddir/cpp/gen/command_gen.o $builddir/cpp/gen/dev_gen.o $builddir/cpp/gen/_gen.o $builddir/cpp/gen/dmmeta_gen.o $builddir/cpp/gen/report_gen.o
+
+build $builddir/cpp/abt/build.o: cxx cpp/abt/build.cpp
+build $builddir/cpp/abt/opt.o: cxx cpp/abt/opt.cpp
+build $builddir/cpp/abt/main.o: cxx cpp/abt/main.cpp
+build $builddir/cpp/abt/scan.o: cxx cpp/abt/scan.cpp
+build $builddir/cpp/abt/disas.o: cxx cpp/abt/disas.cpp
+build $builddir/cpp/abt/ood.o: cxx cpp/abt/ood.cpp
+build $builddir/cpp/gen/abt_gen.o: cxx cpp/gen/abt_gen.cpp
+
+build $builddir/abt: link $builddir/cpp/abt/build.o $builddir/cpp/abt/opt.o $builddir/cpp/abt/main.o $builddir/cpp/abt/scan.o $builddir/cpp/abt/disas.o $builddir/cpp/abt/ood.o $builddir/cpp/gen/abt_gen.o $builddir/cpp/algo_lib.a
+
+build $builddir/cpp/src_func/edit.o: cxx cpp/src_func/edit.cpp
+build $builddir/cpp/src_func/fileloc.o: cxx cpp/src_func/fileloc.cpp
+build $builddir/cpp/src_func/header.o: cxx cpp/src_func/header.cpp
+build $builddir/cpp/src_func/iffy.o: cxx cpp/src_func/iffy.cpp
+build $builddir/cpp/src_func/list.o: cxx cpp/src_func/list.cpp
+build $builddir/cpp/src_func/main.o: cxx cpp/src_func/main.cpp
+build $builddir/cpp/src_func/nextfile.o: cxx cpp/src_func/nextfile.cpp
+build $builddir/cpp/src_func/scan.o: cxx cpp/src_func/scan.cpp
+build $builddir/cpp/gen/src_func_gen.o: cxx cpp/gen/src_func_gen.cpp
+
+build $builddir/src_func: link $builddir/cpp/src_func/edit.o $builddir/cpp/src_func/fileloc.o $builddir/cpp/src_func/header.o $builddir/cpp/src_func/iffy.o $builddir/cpp/src_func/list.o $builddir/cpp/src_func/main.o $builddir/cpp/src_func/nextfile.o $builddir/cpp/src_func/scan.o $builddir/cpp/gen/src_func_gen.o $builddir/cpp/algo_lib.a
+
+build abt: phony $builddir/abt
+build src_func: phony $builddir/src_func
